@@ -1,0 +1,17 @@
+image: alpine:latest
+
+pages:
+  stage: deploy
+  script:
+    - mkdir -p public
+    - cp *.html public/ || true
+    - cp *.css public/ || true
+    - cp *.js public/ || true
+    - cp -r images/ public/ || true   # 👈👈👈 THIS is the missing line
+  artifacts:
+    paths:
+      - public
+  only:
+    refs:
+      - Working
+
